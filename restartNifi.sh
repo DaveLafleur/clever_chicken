@@ -15,7 +15,7 @@ badhost=`tail -100 ${logFile}| egrep -o '/nifi-api/site-to-site\sto\s([^:]+)'| a
 
 for host in ${badhost}; do 
   if [ `grep ${host} /etc/hosts | awk '{print $2}'` == ${HOSTNAME} ]; then
-    echo `date` replication fail ${replicationFail} restarting >> ${restartLog}
+    echo `date` replication fail ${replicationFail} restarting >> ${restartLog} #fix log message
     systemctl restart nifi.service
   fi
 done
